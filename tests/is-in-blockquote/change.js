@@ -1,24 +1,24 @@
 import expect from 'expect';
 
-export default function(plugin, change) {
-    const { document } = change.value;
+export default function(plugin, editor) {
+    const { document } = editor.value;
     const noquote = document.getDescendant('noquote');
     const quote = document.getDescendant('quote');
     const quotedeep = document.getDescendant('quotedeep');
 
     expect(
         plugin.utils.isSelectionInBlockquote(
-            change.collapseToStartOf(noquote).value
+            editor.moveToStartOfNode(noquote).value
         )
     ).toBe(false);
     expect(
         plugin.utils.isSelectionInBlockquote(
-            change.collapseToStartOf(quote).value
+            editor.moveToStartOfNode(quote).value
         )
     ).toBe(true);
     expect(
         plugin.utils.isSelectionInBlockquote(
-            change.collapseToStartOf(quotedeep).value
+            editor.moveToStartOfNode(quotedeep).value
         )
     ).toBe(false);
 }

@@ -1,21 +1,16 @@
 import expect from 'expect';
 import fs from 'fs';
 import path from 'path';
-import Slate from '@gitbook/slate';
+import Slate from 'slate';
 import readMetadata from 'read-metadata';
 
 import EditBlockquote from '../lib';
 
 const PLUGIN = EditBlockquote();
-const SCHEMA = Slate.Schema.create({
-    plugins: [PLUGIN]
-});
+const SCHEMA = { plugins: [PLUGIN] };
 
 function deserializeValue(json) {
-    return Slate.Value.fromJSON(
-        { ...json, schema: SCHEMA },
-        { normalize: false }
-    );
+    return Slate.Value.fromJSON({ ...json, schema: SCHEMA });
 }
 
 describe('slate-edit-blockquote', () => {
@@ -35,10 +30,15 @@ describe('slate-edit-blockquote', () => {
 
             const valueInput = deserializeValue(input);
 
-            const newChange = runChange(PLUGIN, valueInput.change());
+            const editorInput = new Slate.Editor({
+                plugins: [PLUGIN],
+                value: valueInput
+            });
+
+            runChange(PLUGIN, editorInput);
 
             if (expected) {
-                const newDocJSon = newChange.value.toJSON();
+                const newDocJSon = editorInput.value.toJSON();
                 expect(newDocJSon).toEqual(deserializeValue(expected).toJSON());
             }
         });

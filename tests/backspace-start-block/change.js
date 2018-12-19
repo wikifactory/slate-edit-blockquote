@@ -1,16 +1,12 @@
-export default function(plugin, change) {
-    const selectedBlock = change.value.document.getDescendant('_selection_key');
-    change.collapseToStartOf(selectedBlock);
+export default function(plugin, editor) {
+    const selectedBlock = editor.value.document.getDescendant('_selection_key');
+    editor.moveToStartOfNode(selectedBlock);
 
-    plugin.onKeyDown(
-        {
-            preventDefault() {},
-            stopPropagation() {},
-            key: 'Backspace'
-        },
-        change,
-        {}
-    );
+    editor.run('onKeyDown', {
+        preventDefault() {},
+        stopPropagation() {},
+        key: 'Backspace'
+    });
 
-    return change;
+    return editor;
 }
