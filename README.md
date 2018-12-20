@@ -1,19 +1,14 @@
-# slate-edit-blockquote
+# @wikifactory/slate-edit-blockquote
 
-[![NPM version](https://badge.fury.io/js/slate-edit-blockquote.svg)](http://badge.fury.io/js/slate-edit-blockquote)
-[![Linux Build Status](https://travis-ci.org/GitbookIO/slate-edit-blockquote.png?branch=master)](https://travis-ci.org/GitbookIO/slate-edit-blockquote)
+[![NPM version](https://badge.fury.io/js/%40wikifactory%2Fslate-edit-blockquote.svg)](http://badge.fury.io/js/%40wikifactory%2Fslate-edit-blockquote)
+[![Linux Build Status](https://travis-ci.org/wikifactory/slate-edit-blockquote.png?branch=master)](https://travis-ci.org/wikifactory/slate-edit-blockquote)
 
 A Slate plugin to handle keyboard events in blockquotes. Blockquotes can contain blocks.
-
-> ⚠️  This repository is now using GitBook's fork of [ianstormtaylor/slate](https://github.com/ianstormtaylor/slate).
-> Previous versions are still [available on NPM](https://www.npmjs.com/package/slate-edit-blockquote)
-> All the versions using GitBook's fork of slate are now published under the `@gitbook` NPM scope.
-> To learn more about why we forked Slate, read [our manifest](https://github.com/GitbookIO/slate/blob/master/Readme.md)
 
 ### Install
 
 ```
-npm install slate-edit-blockquote
+npm install @wikifactory/slate-edit-blockquote
 ```
 
 ### Features
@@ -26,7 +21,7 @@ Natural keybindings:
 ### Simple Usage
 
 ```js
-import EditBlockquote from 'slate-edit-blockquote'
+import EditBlockquote from '@wikifactory/slate-edit-blockquote'
 
 const plugins = [
   EditBlockquote()
@@ -42,7 +37,7 @@ This plugin accepts options to redefine the following block types:
 
 ### Utilities
 
-`slate-edit-blockquote` exports utilities and changes:
+`@wikifactory/slate-edit-blockquote` exports utilities and changes:
 
 #### `utils.isSelectionInBlockquote`
 
@@ -52,12 +47,12 @@ Return true if selection is inside a blockquote (and it can be unwrap).
 
 #### `changes.wrapInBlockquote`
 
-`plugin.changes.wrapInBlockquote(change: Change) => Change`
+`plugin.changes.wrapInBlockquote(editor: Editor) => Editor`
 
 Wrap current block in a new blockquote.
 
 #### `changes.unwrapBlockquote`
 
-`plugin.changes.unwrapBlockquote(change: Change) => Change`
+`plugin.changes.unwrapBlockquote(editor: Editor) => Editor`
 
 Unwrap from current blockquote if any.
